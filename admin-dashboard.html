@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - NCCPA</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #333;
+    }
+
+    header {
+      background: #198754;
+      color: white;
+      padding: 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 23px;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      font-size: 14px;
+    }
+
+    .container {
+      width: 94%;
+      max-width: 1100px;
+      margin: 20px auto;
+    }
+
+    .welcome {
+      background: white;
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .welcome h2 {
+      margin: 0 0 8px;
+      color: #198754;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .card .icon {
+      font-size: 32px;
+    }
+
+    .card h3 {
+      margin: 10px 0 5px;
+      font-size: 17px;
+    }
+
+    .number {
+      font-size: 28px;
+      font-weight: bold;
+      color: #198754;
+    }
+
+    .menu {
+      margin-top: 25px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .menu h2 {
+      color: #198754;
+      margin-top: 0;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .menu a {
+      display: block;
+      padding: 14px;
+      background: #f1f8f4;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #198754;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .menu a:hover {
+      background: #dff3e7;
+    }
+
+    .logout {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin: 25px auto;
+      padding: 13px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      background: #222;
+      color: white;
+      padding: 20px;
+      margin-top: 30px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🛡️ NCCPA Admin Dashboard</h1>
+  <p>NCCPA Jankalyan Foundation</p>
+</header>
+
+<div class="container">
+
+  <div class="welcome">
+    <h2>स्वागत है, Admin 👋</h2>
+    <p>
+      यह NCCPA Jankalyan Foundation का प्रशासनिक नियंत्रण पैनल है।
+    </p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="icon">👥</div>
+      <h3>Volunteers</h3>
+      <div class="number">0</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">🧑‍🤝‍🧑</div>
+      <h3>Members</h3>
+      <div class="number">0</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">📋</div>
+      <h3>Surveys</h3>
+      <div class="number">0</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">🆘</div>
+      <h3>Help Requests</h3>
+      <div class="number">0</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">🏥</div>
+      <h3>Health Camps</h3>
+      <div class="number">0</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">💰</div>
+      <h3>Donations</h3>
+      <div class="number">0</div>
+    </div>
+
+  </div>
+
+  <div class="menu">
+
+    <h2>⚙️ Admin Menu</h2>
+
+    <div class="menu-grid">
+
+      <a href="volunteer-registration.html">
+        👥 Volunteer Management
+      </a>
+
+      <a href="member-registration.html">
+        🧑‍🤝‍🧑 Member Management
+      </a>
+
+      <a href="projects.html">
+        📁 Projects
+      </a>
+
+      <a href="health-camps.html">
+        🏥 Health Camps
+      </a>
+
+      <a href="help-request.html">
+        🆘 Help Requests
+      </a>
+
+      <a href="index.html">
+        🌐 Website
+      </a>
+
+    </div>
+
+  </div>
+
+  <button class="logout" onclick="logout()">
+    🚪 Logout
+  </button>
+
+</div>
+
+<footer>
+  © 2026 NCCPA Jankalyan Foundation<br>
+  "हर घर तक सेवा, हर दिल में विश्वास"
+</footer>
+
+<script>
+  function logout() {
+    alert("Demo Logout सफल हुआ।");
+    window.location.href = "login.html";
+  }
+</script>
+
+</body>
+</html>
