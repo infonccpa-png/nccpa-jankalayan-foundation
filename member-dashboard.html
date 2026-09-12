@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Dashboard - NCCPA</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #333;
+    }
+
+    header {
+      background: #198754;
+      color: white;
+      padding: 20px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 23px;
+    }
+
+    header p {
+      margin: 7px 0 0;
+      font-size: 14px;
+    }
+
+    .container {
+      width: 94%;
+      max-width: 1100px;
+      margin: 20px auto;
+    }
+
+    .welcome,
+    .profile,
+    .menu,
+    .notice {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .welcome h2,
+    .profile h2,
+    .menu h2,
+    .notice h2 {
+      margin-top: 0;
+      color: #198754;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px 10px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .icon {
+      font-size: 30px;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin: 8px 0;
+    }
+
+    .number {
+      font-size: 26px;
+      font-weight: bold;
+      color: #198754;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .menu a {
+      display: block;
+      padding: 15px 10px;
+      background: #f1f8f4;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #198754;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .menu a:hover {
+      background: #dff3e7;
+    }
+
+    .profile p {
+      margin: 10px 0;
+    }
+
+    .notice {
+      border-left: 5px solid #198754;
+    }
+
+    .logout {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin: 25px auto;
+      padding: 13px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      background: #222;
+      color: white;
+      padding: 20px;
+      margin-top: 30px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🧑‍🤝‍🧑 Member Dashboard</h1>
+  <p>NCCPA Jankalyan Foundation</p>
+</header>
+
+<div class="container">
+
+  <div class="welcome">
+    <h2>स्वागत है, Member 👋</h2>
+    <p>
+      NCCPA जनकल्याण फाउंडेशन के Member Dashboard में आपका स्वागत है।
+    </p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="icon">📢</div>
+      <h3>Notifications</h3>
+      <div class="number">0</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">📁</div>
+      <h3>Projects</h3>
+      <div class="number">0</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">🏥</div>
+      <h3>Health Camps</h3>
+      <div class="number">0</div>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎯</div>
+      <h3>Activities</h3>
+      <div class="number">0</div>
+    </div>
+
+  </div>
+
+  <div class="menu">
+
+    <h2>📌 Member Menu</h2>
+
+    <div class="menu-grid">
+
+      <a href="projects.html">
+        📁 NGO Projects
+      </a>
+
+      <a href="health-camps.html">
+        🏥 Health Camps
+      </a>
+
+      <a href="government-schemes.html">
+        🏛️ Government Schemes
+      </a>
+
+      <a href="help-request.html">
+        🆘 Help Request
+      </a>
+
+      <a href="about.html">
+        ℹ️ About NGO
+      </a>
+
+      <a href="index.html">
+        🌐 Main Website
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="profile">
+
+    <h2>👤 मेरी Profile</h2>
+
+    <p><strong>नाम:</strong> Member Name</p>
+    <p><strong>Role:</strong> Member</p>
+    <p><strong>NGO:</strong> NCCPA Jankalyan Foundation</p>
+    <p><strong>Status:</strong> Active</p>
+
+  </div>
+
+  <div class="notice">
+
+    <h2>📢 महत्वपूर्ण सूचना</h2>
+
+    <p>
+      NGO की नई योजनाओं, कार्यक्रमों, स्वास्थ्य शिविरों और
+      जनकल्याण गतिविधियों की जानकारी यहाँ प्राप्त करें।
+    </p>
+
+  </div>
+
+  <button class="logout" onclick="logout()">
+    🚪 Logout
+  </button>
+
+</div>
+
+<footer>
+  © 2026 NCCPA Jankalyan Foundation<br>
+  "हर घर तक सेवा, हर दिल में विश्वास"
+</footer>
+
+<script>
+  function logout() {
+    alert("Demo Logout सफल हुआ।");
+    window.location.href = "login.html";
+  }
+</script>
+
+</body>
+</html>
