@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>सदस्य पंजीकरण | NCCPA Jankalyan Foundation</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, "Noto Sans Devanagari", sans-serif;
+      background: #f5f7fa;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0d47a1, #1976d2);
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+    }
+
+    header h1 {
+      font-size: 27px;
+      margin-bottom: 8px;
+    }
+
+    nav {
+      background: white;
+      padding: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px #ddd;
+    }
+
+    nav a {
+      display: inline-block;
+      margin: 5px 8px;
+      text-decoration: none;
+      color: #0d47a1;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 25px 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #0d47a1;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .intro {
+      text-align: center;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 14px;
+      margin-bottom: 5px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 16px;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      border: none;
+      padding: 13px;
+      margin-top: 20px;
+      background: #1976d2;
+      color: white;
+      border-radius: 7px;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .message {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background: #e8f5e9;
+      color: #176b2c;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 30px;
+      background: #0d47a1;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 22px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>NCCPA Jankalyan Foundation</h1>
+  <p>National Council for Community Promotion & Awareness</p>
+  <p>हर घर तक सेवा, हर दिल में विश्वास</p>
+</header>
+
+<nav>
+  <a href="index.html">होम</a>
+  <a href="about.html">हमारे बारे में</a>
+  <a href="team.html">हमारी टीम</a>
+  <a href="projects.html">परियोजनाएँ</a>
+  <a href="volunteer-registration.html">स्वयंसेवक</a>
+</nav>
+
+<main class="container">
+
+  <section class="card">
+
+    <h2>सदस्य पंजीकरण</h2>
+
+    <p class="intro">
+      NCCPA Jankalyan Foundation की सामाजिक गतिविधियों से जुड़ने के लिए
+      सदस्यता आवेदन करें।
+    </p>
+
+    <form id="memberForm">
+
+      <label for="fullName">पूरा नाम *</label>
+      <input
+        type="text"
+        id="fullName"
+        required
+        placeholder="अपना पूरा नाम">
+
+      <label for="fatherName">पिता / पति का नाम *</label>
+      <input
+        type="text"
+        id="fatherName"
+        required
+        placeholder="पिता या पति का नाम">
+
+      <label for="mobile">मोबाइल नंबर *</label>
+      <input
+        type="tel"
+        id="mobile"
+        required
+        maxlength="10"
+        pattern="[0-9]{10}"
+        placeholder="10 अंकों का मोबाइल नंबर">
+
+      <label for="email">ईमेल</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="example@gmail.com">
+
+      <label for="address">पूरा पता *</label>
+      <textarea
+        id="address"
+        required
+        placeholder="अपना पूरा पता लिखें"></textarea>
+
+      <label for="village">गाँव / वार्ड</label>
+      <input
+        type="text"
+        id="village"
+        placeholder="गाँव / वार्ड">
+
+      <label for="district">जिला</label>
+      <input
+        type="text"
+        id="district"
+        value="Purnea">
+
+      <label for="state">राज्य</label>
+      <input
+        type="text"
+        id="state"
+        value="Bihar">
+
+      <label for="occupation">व्यवसाय / कार्य</label>
+      <input
+        type="text"
+        id="occupation"
+        placeholder="अपना व्यवसाय / कार्य">
+
+      <label for="membershipType">सदस्यता का प्रकार *</label>
+
+      <select id="membershipType" required>
+        <option value="">चुनें</option>
+        <option value="सामान्य सदस्य">सामान्य सदस्य</option>
+        <option value="सक्रिय सदस्य">सक्रिय सदस्य</option>
+        <option value="आजीवन सदस्य">आजीवन सदस्य</option>
+        <option value="मानद सदस्य">मानद सदस्य</option>
+      </select>
+
+      <label for="interest">रुचि का क्षेत्र</label>
+
+      <select id="interest">
+        <option value="">चुनें</option>
+        <option value="शिक्षा">शिक्षा</option>
+        <option value="स्वास्थ्य">स्वास्थ्य</option>
+        <option value="महिला सशक्तिकरण">महिला सशक्तिकरण</option>
+        <option value="युवा विकास">युवा विकास</option>
+        <option value="ग्रामीण विकास">ग्रामीण विकास</option>
+        <option value="पर्यावरण">पर्यावरण</option>
+        <option value="मानव अधिकार">मानव अधिकार</option>
+        <option value="अन्य">अन्य</option>
+      </select>
+
+      <label for="photo">फोटो</label>
+      <input
+        type="file"
+        id="photo"
+        accept="image/*">
+
+      <button
+        type="submit"
+        class="submit-btn">
+        सदस्यता आवेदन जमा करें
+      </button>
+
+    </form>
+
+    <div id="message" class="message"></div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>NCCPA Jankalyan Foundation</strong></p>
+  <p>आपातकाल हो या अधिकार – हम हैं तैयार</p>
+  <p>© 2026 NCCPA Jankalyan Foundation</p>
+</footer>
+
+<script>
+
+  const form = document.getElementById("memberForm");
+  const message = document.getElementById("message");
+
+  form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const membershipNumber =
+      "NCCPA-MBR-" +
+      Date.now().toString().slice(-8);
+
+    message.style.display = "block";
+
+    message.innerHTML =
+      "<strong>सदस्यता आवेदन सफलतापूर्वक तैयार हो गया है।</strong><br><br>" +
+      "आपका आवेदन नंबर: <strong>" +
+      membershipNumber +
+      "</strong><br><br>" +
+      "कृपया आवेदन नंबर सुरक्षित रखें।<br>" +
+      "यह अभी Demo Form है। Firebase जोड़ने के बाद आवेदन सुरक्षित डेटाबेस में सेव किया जाएगा।";
+
+    form.reset();
+
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth"
+    });
+
+  });
+
+</script>
+
+</body>
+</html>
