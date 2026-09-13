@@ -6,9 +6,7 @@
   <title>Login - NCCPA Jankalyan Foundation</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -74,10 +72,6 @@
       outline: none;
     }
 
-    input:focus {
-      border-color: #198754;
-    }
-
     button {
       width: 100%;
       margin-top: 22px;
@@ -91,8 +85,8 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background: #146c43;
+    button:disabled {
+      background: #999;
     }
 
     .message {
@@ -125,75 +119,150 @@
 
 <body>
 
-  <div class="login-box">
+<div class="login-box">
 
-    <div class="logo">N</div>
+  <div class="logo">N</div>
 
-    <h1>NCCPA Login</h1>
+  <h1>NCCPA Login</h1>
 
-    <div class="subtitle">
-      NCCPA Jankalyan Foundation
-      <br>
-      National Council for Community Promotion & Awareness
-    </div>
-
-    <form id="loginForm">
-
-      <label for="email">ईमेल / Login ID</label>
-      <input
-        type="email"
-        id="email"
-        placeholder="अपना ईमेल दर्ज करें"
-        required
-      >
-
-      <label for="password">पासवर्ड</label>
-      <input
-        type="password"
-        id="password"
-        placeholder="अपना पासवर्ड दर्ज करें"
-        required
-      >
-
-      <button type="submit">
-        🔐 Login
-      </button>
-
-    </form>
-
-    <div id="message" class="message"></div>
-
-    <div class="links">
-      <a href="volunteer-registration.html">
-        Volunteer Registration
-      </a>
-
-      <br>
-
-      <a href="member-registration.html">
-        Member Registration
-      </a>
-
-      <a href="index.html" class="back">
-        ← मुख्य पेज पर वापस जाएँ
-      </a>
-    </div>
-
+  <div class="subtitle">
+    NCCPA Jankalyan Foundation
+    <br>
+    National Council for Community Promotion & Awareness
   </div>
 
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
+  <form id="loginForm">
 
-      e.preventDefault();
+    <label for="email">ईमेल / Login ID</label>
+    <input
+      type="email"
+      id="email"
+      placeholder="अपना ईमेल दर्ज करें"
+      required
+    >
 
-      const message = document.getElementById("message");
+    <label for="password">पासवर्ड</label>
+    <input
+      type="password"
+      id="password"
+      placeholder="अपना पासवर्ड दर्ज करें"
+      required
+    >
+
+    <button id="loginButton" type="submit">
+      🔐 Login
+    </button>
+
+  </form>
+
+  <div id="message" class="message"></div>
+
+  <div class="links">
+    <a href="volunteer-registration.html">
+      Volunteer Registration
+    </a>
+
+    <br>
+
+    <a href="member-registration.html">
+      Member Registration
+    </a>
+
+    <a href="index.html" class="back">
+      ← मुख्य पेज पर वापस जाएँ
+    </a>
+  </div>
+
+</div>
+
+<script type="module">
+
+  import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+  import {
+    getAuth,
+    signInWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCVzqjczfUEUXWUnPUxEaeK9r4stLYO3yM",
+    authDomain: "nccpa-jankalyan-foundation.firebaseapp.com",
+    projectId: "nccpa-jankalyan-foundation",
+    storageBucket: "nccpa-jankalyan-foundation.firebasestorage.app",
+    messagingSenderId: "940800992827",
+    appId: "1:940800992827:web:10e2e4fd72fcd217f91e1e",
+    measurementId: "G-7XDFLZVV0K"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const form = document.getElementById("loginForm");
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
+  const message = document.getElementById("message");
+  const loginButton = document.getElementById("loginButton");
+
+  form.addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    message.style.color = "#555";
+    message.textContent = "Login हो रहा है...";
+    loginButton.disabled = true;
+
+    try {
+
+      const userCredential =
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+      const user = userCredential.user;
 
       message.style.color = "#198754";
-      message.textContent =
-        "Login system अभी Demo Mode में है। Firebase जोड़ने के बाद वास्तविक Login काम करेगा।";
+      message.textContent = "Login सफल! Dashboard खोला जा रहा है...";
 
-    });
-  </script>
+      /*
+       * अभी हम Firebase Authentication से Login कर रहे हैं।
+       * अगला Step Firestore से role पढ़कर
+       * Admin / Volunteer / Member Dashboard पर भेजना होगा।
+       */
+
+      setTimeout(() => {
+        window.location.href = "admin-dashboard.html";
+      }, 1000);
+
+    } catch (error) {
+
+      message.style.color = "#dc3545";
+
+      if (error.code === "auth/invalid-credential") {
+        message.textContent =
+          "ईमेल या पासवर्ड गलत है।";
+      } else if (error.code === "auth/user-not-found") {
+        message.textContent =
+          "यह User मौजूद नहीं है।";
+      } else if (error.code === "auth/wrong-password") {
+        message.textContent =
+          "पासवर्ड गलत है।";
+      } else {
+        message.textContent =
+          "Login असफल: " + error.message;
+      }
+
+      loginButton.disabled = false;
+    }
+
+  });
+
+</script>
 
 </body>
 </html>
