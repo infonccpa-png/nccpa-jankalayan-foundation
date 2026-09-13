@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Admin Dashboard - NCCPA</title>
 
   <style>
@@ -131,6 +132,12 @@
       cursor: pointer;
     }
 
+    .status {
+      text-align: center;
+      margin: 15px 0;
+      font-weight: bold;
+    }
+
     footer {
       text-align: center;
       background: #222;
@@ -156,6 +163,12 @@
     <p>
       यह NCCPA Jankalyan Foundation का प्रशासनिक नियंत्रण पैनल है।
     </p>
+
+    <div id="adminEmail"></div>
+  </div>
+
+  <div id="status" class="status">
+    Firebase से डेटा लोड हो रहा है...
   </div>
 
   <div class="cards">
@@ -163,19 +176,19 @@
     <div class="card">
       <div class="icon">👥</div>
       <h3>Volunteers</h3>
-      <div class="number">0</div>
+      <div class="number" id="volunteerCount">0</div>
     </div>
 
     <div class="card">
       <div class="icon">🧑‍🤝‍🧑</div>
       <h3>Members</h3>
-      <div class="number">0</div>
+      <div class="number" id="memberCount">0</div>
     </div>
 
     <div class="card">
       <div class="icon">📋</div>
       <h3>Surveys</h3>
-      <div class="number">0</div>
+      <div class="number" id="surveyCount">0</div>
     </div>
 
     <div class="card">
@@ -232,7 +245,7 @@
 
   </div>
 
-  <button class="logout" onclick="logout()">
+  <button class="logout" id="logoutBtn">
     🚪 Logout
   </button>
 
@@ -243,11 +256,167 @@
   "हर घर तक सेवा, हर दिल में विश्वास"
 </footer>
 
-<script>
-  function logout() {
-    alert("Demo Logout सफल हुआ।");
-    window.location.href = "login.html";
-  }
+
+<script type="module">
+
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+  import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+  import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    where
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+  // Firebase Configuration
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCVzqjczfUEUXWUnPUxEaeK9r4stLYO3yM",
+    authDomain: "nccpa-jankalyan-foundation.firebaseapp.com",
+    projectId: "nccpa-jankalyan-foundation",
+    storageBucket: "nccpa-jankalyan-foundation.firebasestorage.app",
+    messagingSenderId: "940800992827",
+    appId: "1:940800992827:web:10e2e4fd72fcd217f91e1e",
+    measurementId: "G-7XDFLZVV0K"
+  };
+
+
+  // Firebase Start
+
+  const app = initializeApp(firebaseConfig);
+
+  const auth = getAuth(app);
+
+  const db = getFirestore(app);
+
+
+  // Login Check
+
+  onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+      window.location.href = "login.html";
+
+      return;
+    }
+
+
+    // Admin Email दिखाएँ
+
+    document.getElementById("adminEmail").innerHTML =
+      "Login: <b>" + user.email + "</b>";
+
+
+    try {
+
+      // Firestore Users पढ़ें
+
+      const usersSnapshot =
+        await getDocs(collection(db, "users"));
+
+
+      let volunteers = 0;
+      let members = 0;
+
+
+      usersSnapshot.forEach((doc) => {
+
+        const data = doc.data();
+
+        const role =
+          (data.role || "")
+          .trim()
+          .toLowerCase();
+
+
+        if (role === "volunteer") {
+          volunteers++;
+        }
+
+        if (role === "member") {
+          members++;
+        }
+
+      });
+
+
+      // Surveys पढ़ें
+
+      const surveysSnapshot =
+        await getDocs(collection(db, "surveys"));
+
+
+      // Numbers दिखाएँ
+
+      document.getElementById("volunteerCount")
+        .textContent = volunteers;
+
+      document.getElementById("memberCount")
+        .textContent = members;
+
+      document.getElementById("surveyCount")
+        .textContent = surveysSnapshot.size;
+
+
+      document.getElementById("status").style.color =
+        "#198754";
+
+      document.getElementById("status").textContent =
+        "✅ Firebase डेटा सफलतापूर्वक लोड हो गया";
+
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+      document.getElementById("status").style.color =
+        "red";
+
+      document.getElementById("status").textContent =
+        "❌ Firebase डेटा लोड नहीं हो पाया";
+
+    }
+
+  });
+
+
+  // Logout
+
+  document
+    .getElementById("logoutBtn")
+    .addEventListener("click", async () => {
+
+      try {
+
+        await signOut(auth);
+
+        window.location.href = "login.html";
+
+      }
+
+      catch (error) {
+
+        alert("Logout में समस्या हुई।");
+
+        console.error(error);
+
+      }
+
+    });
+
 </script>
 
 </body>
